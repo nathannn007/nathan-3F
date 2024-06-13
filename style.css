@@ -1,58 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 :root{
+    /* nomedavariável: valor */
     --cor-de-fundo: #1e1e1e;
-    --verde: #6fff57;
-    --branco: #ffffff;
-    --botao-ativo: #3a375e;
-    --botao-inativo: rgba(58, 55, 94, 0.5);
+    --verde: #6FFF57;
+    --branco: #FFFFFF;
+    --botao-ativo: #3A3753;
+    --botao-inativo: rgba(58,55,94,0.5);
     --texto-fundo: rgba(58,55,94,0.3);
-
 }
-
+body{
+    background-color: var(--cor-de-fundo);
+    font-family: 'Chakra Petch', sans-serif;
+}
 *{
+    
     color: var(--branco);
 }
 
-body{
-    background-color: var(--cor-de-fundo);
-}
-
 span{
-    color: var(--verde);
+ color: var(--branco);
 }
 
 .conteudo-principal{
     display: flex;
     flex-direction: column;
-    justify-content: center; /*colunas*/
-    align-items:  center; /*linhas*/
-    width: 100%; /*Configura 100% da página*/
-    max-width: 1300px;/*(Define o tamanho máx da página como 1200px) MODELO DO PROFESSOR (o meu para ficar centralizado tem que ser 1300*/
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+.conteudo-principal{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
 }
-
 .titulo-principal{
     text-align: center;
     width: 100%;
     font-size: 32px;
 }
-
 .botao{
-    background: var(--botao-inativo);
-    color: white;/*Cor da fonte*/
+    background-color: var(--botao-inativo);
+    color: white;
     display: flex;
     justify-content: center;
-    align-items: center;/*definem a forma de exibição*/
-    padding: 1em;/*Afastamento interno*/
-    font-size: 18px;/* Muda o tamanho da fonte*/
+    align-items: center;
+    padding: 1em;
+    font-size: 18px;
     width: 100%;
     border-bottom: 4px solid var(--botao-ativo);
-    border-left: 2px solid  var(--botao-ativo);
-    border-right: 2px solid var(--botao-ativo);
+    border-left: 2px solid var(--botao-ativo);
+    border-right: 2px solid var (--botao-ativo);
+    font-family: 'Chakra Petch', sans-serif;
 }
-
 .botao.ativo{
-    background-color: var(--texto-fundo);
+    background-color: var(--botao-ativo);
     border-bottom: 4px solid var(--verde);
+}
+.aba-conteudo{
+    display: none;
+}
+.aba-conteudo.ativo{
+    display: block;
 }
 .abas-textos{
     background-color: var(--botao-inativo);
@@ -60,34 +73,23 @@ span{
     border-radius: 15px;
 }
 .aba-conteudo-titulo-principal{
+    font-size: 40px;
     text-align: center;
-    font-size: 28px;
 }
 .aba-conteudo-titulo-secundario{
     text-align: center;
     color: var(--verde);
     text-transform: uppercase;
+    font-size: 20px
 }
-
-.aba-conteudo{
-    background-color: var(--texto-fundo);
-    display: none;
-}
-.aba-conteudo.ativo{
-    display: block;
-}
-
-
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 700px){
     .botoes{
         display: flex;
     }
-
-    .botao:first-child{
-        border-radius: 20px 0 0 20px;
-    
-    }
     .botao:last-child{
         border-radius: 0 20px 20px 0;
+    }
+    .botao:first-child{
+        border-radius: 20px 0 0 20px;
     }
 }
