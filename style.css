@@ -29,6 +29,12 @@ span{
     max-width: 1200px;
     width: 100%;
 }
+.contador{
+    padding: 0 16px;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+}
 .conteudo-principal{
     display: flex;
     justify-content: center;
