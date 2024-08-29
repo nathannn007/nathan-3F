@@ -1,50 +1,56 @@
-const botoes = document.querySelectorAll(".botao")
-const conteudo = document.querySelectorAll(".aba-conteudo")
-const contador = document.querySelectorAll(".contador")
+const botoes = document.querySelectorAll(".botao");
+const textos = document.querySelectorAll(".aba-conteudo");
 
-contador[0].textContent = "olá"
-const tempoObjetivo1 = new Date(2027,02,27,9,50)
-const tempoObjetivo2 = new Date(2027,02,27,9,50)
-const tempoObjetivo3 = new Date(2027,02,27,9,50)
-const tempoObjetivo4 = new Date(2027,02,27,9,50)
+for (let i = 0; i < botoes.length; i++) {
+    botoes[i].onclick = function () {
 
-function calculaTempo(tempoObjetivo){
-  const agora = new Date()
-  let segundos
-  let minutos
-  let horas
-  let dias
-  segundos = (tempoObjetivo - agora)/1000
-  minutos = segundos/60
-  horas = minutos/60
-  dias = horas/24
-  segundos = Math.floor(segundos)
-  minutos = Math.floor(minutos)
-  horas = Math.floor(horas)
-  dias = Math.floor(dias)
+        for (let j = 0; j < botoes.length; j++) {
+            botoes[j].classList.remove("ativo");
+            textos[j].classList.remove("ativo");
+        }
 
-  segundos = segundos%60
-  minutos = minutos%60
-  horas = horas%24
-  return [dias,horas,minutos,segundos]
+        botoes[i].classList.add("ativo");
+        textos[i].classList.add("ativo");
+    }
 }
-/*let contadorPrimeiro = calculaTempo(tempoObjetivo1)
-contador[0].textContent = `Faltam ${contadorPrimeiro[0]} dias, ${contadorPrimeiro[1]} horas, ${contadorPrimeiro[2]} minutos e ${contadorPrimeiro[3]} segundos`
-let contadorSegundo = calculaTempo(tempoObjetivo2)
-contador[1].textContent = `Faltam ${contadorSegundo[0]} dias, ${contadorSegundo[1]} horas e ${contadorSegundo[2]} minutos e ${contadorSegundo[3]} segundos`
-let contadorTerceiro = calculaTempo(tempoObjetivo3)
-contador[2].textContent = `Faltam ${contadorTerceiro[0]} dias, ${contadorTerceiro[1]} horas e ${contadorTerceiro[2]} minutos e ${contadorTerceiro[3]} segundos`
-let contadorQuarto = calculaTempo(tempoObjetivo4)
-contador[3].textContent = `Faltam ${contadorQuarto[0]} dias, ${contadorQuarto[1]} horas e ${contadorQuarto[2]} minutos e ${contadorQuarto[3]} segundos` */
+
+const contadores = document.querySelectorAll(".contador");
+const tempoObjetivo1 = new Date("2020-10-05T00:00:00");
+const tempoObjetivo2 = new Date("2023-12-05T00:00:00");
+const tempoObjetivo3 = new Date("2023-12-30T00:00:00");
+const tempoObjetivo4 = new Date("2024-02-01T00:00:00");
+
+const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4];
 
 
-for (let i = 0; i < botoes.length; i++){
-    botoes[i].onclick = function(){
-      for (let j = 0; j < botoes.length; j++){
-           botoes[j].classList.remove("ativo")
-           conteudo[j].classList.remove("ativo")
-      }
-      botoes[i].classList.add("ativo")
-      conteudo[i].classList.add("ativo")
-  }
+function calculaTempo(tempoObjetivo) {
+    let tempoAtual = new Date();
+    let tempoFinal = tempoObjetivo - tempoAtual;
+    let segundos = Math.floor(tempoFinal / 1000);
+    let minutos = Math.floor(segundos / 60);
+    let horas = Math.floor(minutos / 60);
+    let dias = Math.floor(horas / 24);
+
+    segundos %= 60;
+    minutos %= 60;
+    horas %= 24;
+    if (tempoFinal > 0){
+        return dias + " dias " + horas + " horas " + minutos + " minutos " + segundos + " segundos";
+    } else {
+        return "Prazo Finalizado";
+    }
 }
+
+function atualizaCronometro(){
+       
+    for (let i=0; i<contadores.length;i++){
+        contadores[i].textContent = calculaTempo(tempos[i]);  
+    }
+}
+
+function comecaCronometro(){
+    atualizaCronometro();
+    setInterval(atualizaCronometro,1000);
+}
+
+comecaCronometro();
